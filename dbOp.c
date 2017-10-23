@@ -25,16 +25,14 @@ void dbInit(MYSQL *mysql) {
         }// if
 }
 
-/*********************************
-* Cerrar conexiona a la base de *
-* datos.                        *
-* @method dbClose               *
-* @param  mysql   pointera DB   *
-*********************************/
-
-void dbClose(MYSQL *mysql) {
-        mysql_close(mysql);
-}
+/************************************
+* Control de errores al guardar el *
+* resultado del query en res.      *
+* @method dbQuery                  *
+* @param  buffer  query            *
+* @param  mysql   pointer a DB     *
+* @param  res     poimnter a res   *
+************************************/
 
 extern void dbQuery(char *buffer, MYSQL *mysql, MYSQL_RES **res) {
         if (mysql_query(mysql,buffer)) {

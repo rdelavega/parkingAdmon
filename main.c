@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
                         MYSQL mysql;
                         dbInit(&mysql);
                         logIn(argv[2],argv[4],&mysql);
-                        dbClose(&mysql);
+                        mysql_close(&mysql);
                 } else {
                         printf("\n\nLos datos ingresados no son admitidos!!!\n\n");
                 }
