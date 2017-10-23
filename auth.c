@@ -14,6 +14,7 @@ void logIn(char *user_name, char *password, MYSQL *mysql) {
         char account[1024];
         MYSQL_RES *res;
         MYSQL_ROW row;
+        User usr;
 
         sprintf(account, "SELECT * FROM p1_users WHERE username = '%s' AND password = '%s'",user_name,password);
 
