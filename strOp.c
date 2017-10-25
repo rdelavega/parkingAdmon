@@ -43,3 +43,20 @@ bool strCheck(char * str) {
 
         return accept;
 }
+
+/***********************************
+* Convierte un string a enteros o *
+* devuelve -1                     *
+* @method strInt                  *
+* @param  str    pointer a String *
+* @return        Integer          *
+***********************************/
+
+int strInt (char *str) {
+        char *ptr = "";
+        int x = strtol(str, &ptr, 10);
+        if (strcmp(ptr,"\n\0") != 0) {
+                x = -1;
+        }
+        return x;
+}

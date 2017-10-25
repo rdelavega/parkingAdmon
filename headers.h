@@ -11,6 +11,18 @@
 #include <mysql/mysql.h>
 
 ////////////////
+// Structures //
+////////////////
+
+typedef struct user {
+  int id_user;
+  char name[15];
+  char l_name[20];
+  char type_of[20];
+  int id_institution;
+} User;
+
+////////////////
 // Prototypes //
 ////////////////
 
@@ -20,22 +32,11 @@ extern bool strCheck(char *str);
 extern void dbInit(MYSQL *mysql);
 extern void logIn(char *user_name, char *password, MYSQL *mysql);
 extern void dbQuery(char *buffer, MYSQL *mysql, MYSQL_RES **res);
-
-////////////////
-// Structures //
-////////////////
-
-typedef struct user {
-  int id_user;
-  char name[15];
-  char l_name[20];
-  char l_name2[20];
-  char email[40];
-  char username[10];
-  char password[10];
-  char phone[15];
-  char address[100];
-  char rfc[13];
-  char type_of[3];
-  int id_institution;
-} User;
+extern void userType(char *type);
+extern void setStruct(char cont[][20], User *usr);
+extern void notNUll(MYSQL_ROW row, char cont[][20], int x);
+extern void setMenu(User usr);
+extern int strInt(char *str);
+extern void optionMenu(User usr, int x);
+extern void optionInsert(char *type_of);
+extern void optionQuery(char *type_of);
