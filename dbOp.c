@@ -26,15 +26,16 @@ void dbInit(MYSQL *mysql) {
 }
 
 /************************************
-* Control de errores al guardar el *
-* resultado del query en res.      *
+* Control de errores e inicializar *
+* al guardar y ejecutar el comando *
+* del query en res.                *
 * @method dbQuery                  *
 * @param  buffer  query            *
 * @param  mysql   pointer a DB     *
 * @param  res     poimnter a res   *
 ************************************/
 
-extern void dbQuery(char *buffer, MYSQL *mysql, MYSQL_RES **res) {
+void dbQuery(char *buffer, MYSQL *mysql, MYSQL_RES **res) {
         if (mysql_query(mysql,buffer)) {
                 printf("Error al ejecutar query %s\n", mysql_error(mysql));
                 exit(1);
@@ -42,6 +43,21 @@ extern void dbQuery(char *buffer, MYSQL *mysql, MYSQL_RES **res) {
 
         if (!(*res=mysql_store_result(mysql))) {
                 printf("Error al obtener el resultset %s\n", mysql_error(mysql));
+                exit(1);
+        } // if
+}
+
+/************************************
+* Control de errores e inicializar *
+* al ejecutar el comando insert.   *
+* @method dbQuery                  *
+* @param  buffer  comando          *
+* @param  mysql   pointer a DB     *
+************************************/
+
+void dbInsert(char *buffer, MYSQL *mysql) {
+        if (mysql_query(mysql,buffer)) {
+                printf("Error al ejecutar query %s\n", mysql_error(mysql));
                 exit(1);
         } // if
 }

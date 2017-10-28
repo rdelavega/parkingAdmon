@@ -24,8 +24,7 @@ void strUpper(char *str) {
 *                  String                       *
 *************************************************/
 
-
-bool strCheck(char * str) {
+bool strCheck(char *str) {
         char avoid[34][10] = {"SELECT","INSERT","INTO","VALUES","FROM","AND",
                               "OR","CREATE","TABLE","ALTER","DROP","UPDATE",
                               "DELETE","WHERE","COUNT","AVG","UPPER","LOWER",
@@ -59,4 +58,56 @@ int strInt (char *str) {
                 x = -1;
         }
         return x;
+}
+
+/********************************************
+* Valida datos obligatorios, si es posible *
+* regresa true, de lo contrario false      *
+* @method valNotForced                     *
+* @param  nFor         datos               *
+* @param  x            longitud            *
+* @return              true, false         *
+********************************************/
+
+bool valForced(char sFor[][20], int x) {
+        bool pass = true;
+        char temp[20];
+        for (int i = 0; i < x; i++) {
+                if (strcmp(sFor[i],"\n\0") == 0 || strCheck(sFor[i]) == false) {
+                        pass = false;
+                } else {
+                        strtok(sFor[i],"\n");
+                        strcpy(temp,sFor[i]);
+                        sprintf(sFor[i],"'%s'",temp);
+                }
+        }
+        return pass;
+}
+
+/***********************************************
+* Valida datos no obligatorios, si es posible *
+* regresa true, de lo contrario false         *
+* @method valNotForced                        *
+* @param  nFor         datos                  *
+* @param  x            longitud               *
+* @return              true, false            *
+***********************************************/
+
+bool valNotForced(char nFor[][20], int x) {
+        bool pass = true;
+        char temp[20];
+        for (int i = 0; i < x; i++) {
+                if (strcmp(nFor[i],"\n\0") == 0) {
+                        strcpy(nFor[i],"NULL");
+                } else {
+                        if (strCheck(nFor[i]) == false) {
+                                pass = false;
+                        } else {
+                                strtok(nFor[i],"\n");
+                                strcpy(temp,nFor[i]);
+                                sprintf(nFor[i],"'%s'",temp);
+                        }
+                }
+        }
+        return pass;
 }

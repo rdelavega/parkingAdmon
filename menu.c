@@ -6,9 +6,9 @@
 * @param  usr     User struct *
 *******************************/
 
-void setMenu(User usr) {
+void setMenu(User usr,MYSQL *mysql) {
         char str[20];
-        int opc = -1;
+        int opc = 0;
         do {
                 system("clear");
                 printf("\n\n\tElige una opcion:\n\n");
@@ -18,7 +18,7 @@ void setMenu(User usr) {
                 fgets(str,20,stdin);
                 opc = strInt(str);
                 if (opc == 1 || opc == 2) {
-                        optionMenu(usr,opc);
+                        optionMenu(usr,opc,mysql);
                 }
         } while(opc != 0);
 }
@@ -32,7 +32,7 @@ void setMenu(User usr) {
 * @param  x          Opcion         *
 *************************************/
 
-void optionMenu(User usr, int x) {
+void optionMenu(User usr, int x, MYSQL *mysql) {
         char str[20];
         int opc = 0;
         do {
@@ -44,7 +44,75 @@ void optionMenu(User usr, int x) {
                 fgets(str,20,stdin);
                 opc = strInt(str);
                 printf("%d\n", opc);
+                if (x == 1) {
+                        insertRoute(usr.type_of,opc,mysql);
+                } else if (x == 2) {
+                        queryRoute(usr.type_of);
+                }
         } while(opc != 0);
+}
+
+/***************************************
+* Dirige al usuario a la funcion que  *
+* el mismo haya escogido.             *
+* @method insertRoute                 *
+* @param  type_of     nivel de acceso *
+* @param  x           Opcion          *
+***************************************/
+
+void insertRoute(char *type_of, int x, MYSQL *mysql) {
+        if (strcmp(type_of,"Superuser") == 0) {
+                switch (x) {
+                case 1:
+                        addInstitute(mysql);
+                        break;
+                case 2:
+                        // addUser();
+                        break;
+                case 3:
+                        // addState();
+                        break;
+                case 4:
+                        // addSector();
+                        break;
+                case 5:
+                        // addType();
+                        break;
+                }
+        } else if (strcmp(type_of,"Administrador") == 0) {
+                switch (x) {
+                case 1:
+                        // addUser();
+                        break;
+                case 2:
+                        // addParking();
+                        break;
+                case 3:
+                        // addSchedule();
+                        break;
+                }
+        } else if (strcmp(type_of,"Cliente") == 0) {
+                switch (x) {
+                case 1:
+                        // addVehicle();
+                        break;
+                case 2:
+                        // addPark();
+                        break;
+                }
+        }
+}
+
+/***************************************
+* Dirige al usuario a la funcion que  *
+* el mismo haya escogido.             *
+* @method insertRoute                 *
+* @param  type_of     nivel de acceso *
+* @param  x           Opcion          *
+***************************************/
+
+void queryRoute(char *type_of) {
+
 }
 
 /*******************************************
