@@ -71,7 +71,7 @@ int strInt (char *str) {
 
 bool valForced(char sFor[][100], int x) {
         bool pass = true;
-        char temp[980];
+        char temp[98];
         for (int i = 0; i < x; i++) {
                 if (strcmp(sFor[i],"\n\0") == 0 || strCheck(sFor[i]) == false) {
                         pass = false;

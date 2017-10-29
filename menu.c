@@ -43,11 +43,10 @@ void optionMenu(User usr, int x, MYSQL *mysql) {
                 }
                 fgets(str,20,stdin);
                 opc = strInt(str);
-                printf("%d\n", opc);
                 if (x == 1) {
-                        insertRoute(usr.type_of,opc,mysql);
+                        insertRoute(usr,opc,mysql);
                 } else if (x == 2) {
-                        queryRoute(usr.type_of);
+                        queryRoute(usr,opc,mysql);
                 }
         } while(opc != 0);
 }
@@ -60,14 +59,14 @@ void optionMenu(User usr, int x, MYSQL *mysql) {
 * @param  x           Opcion          *
 ***************************************/
 
-void insertRoute(char *type_of, int x, MYSQL *mysql) {
-        if (strcmp(type_of,"Superuser") == 0) {
+void insertRoute(User usr, int x, MYSQL *mysql) {
+        if (strcmp(usr.type_of,"Superuser") == 0) {
                 switch (x) {
                 case 1:
                         addInstitute(mysql);
                         break;
                 case 2:
-                        // addUser();
+                        addUser(mysql,usr);
                         break;
                 case 3:
                         // addState();
@@ -79,7 +78,7 @@ void insertRoute(char *type_of, int x, MYSQL *mysql) {
                         // addType();
                         break;
                 }
-        } else if (strcmp(type_of,"Administrador") == 0) {
+        } else if (strcmp(usr.type_of,"Administrador") == 0) {
                 switch (x) {
                 case 1:
                         // addUser();
@@ -91,7 +90,7 @@ void insertRoute(char *type_of, int x, MYSQL *mysql) {
                         // addSchedule();
                         break;
                 }
-        } else if (strcmp(type_of,"Cliente") == 0) {
+        } else if (strcmp(usr.type_of,"Cliente") == 0) {
                 switch (x) {
                 case 1:
                         // addVehicle();
@@ -111,7 +110,7 @@ void insertRoute(char *type_of, int x, MYSQL *mysql) {
 * @param  x           Opcion          *
 ***************************************/
 
-void queryRoute(char *type_of) {
+void queryRoute(User usr, int x, MYSQL *mysql) {
 
 }
 

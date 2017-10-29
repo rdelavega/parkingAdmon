@@ -1,4 +1,4 @@
-OBJS = main.o HELP.o dbOp.o strOp.o auth.o menu.o addDB.o
+OBJS = main.o HELP.o dbOp.o strOp.o auth.o menu.o addDB.o queryDB.o
 
 CFLAGS = -lnsl -lm -lz -lmysqlclient
 
@@ -25,6 +25,9 @@ menu.o:	menu.c headers.h
 
 addDB.o:	addDB.c headers.h
 	gcc -c addDB.c
+
+queryDB.o:	queryDB.c headers.h
+	gcc -c queryDB.c
 
 clean:
 	rm -f $(OBJS) parkingAdmon
