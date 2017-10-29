@@ -69,9 +69,9 @@ int strInt (char *str) {
 * @return              true, false         *
 ********************************************/
 
-bool valForced(char sFor[][20], int x) {
+bool valForced(char sFor[][100], int x) {
         bool pass = true;
-        char temp[20];
+        char temp[980];
         for (int i = 0; i < x; i++) {
                 if (strcmp(sFor[i],"\n\0") == 0 || strCheck(sFor[i]) == false) {
                         pass = false;
@@ -93,9 +93,9 @@ bool valForced(char sFor[][20], int x) {
 * @return              true, false            *
 ***********************************************/
 
-bool valNotForced(char nFor[][20], int x) {
+bool valNotForced(char nFor[][100], int x) {
         bool pass = true;
-        char temp[20];
+        char temp[98];
         for (int i = 0; i < x; i++) {
                 if (strcmp(nFor[i],"\n\0") == 0) {
                         strcpy(nFor[i],"NULL");

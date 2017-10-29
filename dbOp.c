@@ -55,9 +55,12 @@ void dbQuery(char *buffer, MYSQL *mysql, MYSQL_RES **res) {
 * @param  mysql   pointer a DB     *
 ************************************/
 
-void dbInsert(char *buffer, MYSQL *mysql) {
+bool dbInsert(char *buffer, MYSQL *mysql) {
+        bool pass = true;
         if (mysql_query(mysql,buffer)) {
-                printf("Error al ejecutar query %s\n", mysql_error(mysql));
-                exit(1);
+                printf("\n\n\tERROR: %s\n", mysql_error(mysql));
+                printf("\tIntente de nuevo!!!\n\n");
+                pass = false;
         } // if
+        return pass;
 }
