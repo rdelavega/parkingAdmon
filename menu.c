@@ -72,7 +72,7 @@ void insertRoute(User usr, int x, MYSQL *mysql) {
                         addState(mysql,usr);
                         break;
                 case 4:
-                        // addSector();
+                        addSector(mysql);
                         break;
                 case 5:
                         // addType();
@@ -81,7 +81,7 @@ void insertRoute(User usr, int x, MYSQL *mysql) {
         } else if (strcmp(usr.type_of,"Administrador") == 0) {
                 switch (x) {
                 case 1:
-                        // addUser();
+                        addUser(mysql,usr);
                         break;
                 case 2:
                         // addParking();
