@@ -177,7 +177,7 @@ int selSector(MYSQL *mysql) {
                         fgets(str,20,stdin);
                         opc = strInt(str);
                         if (opc > 1 && opc <= (i+1)) {
-                                opc = num[opc];
+                                opc = num[(opc-1)];
                         }
                 }
         } else {
