@@ -69,13 +69,13 @@ void insertRoute(User usr, int x, MYSQL *mysql) {
                         addUser(mysql,usr);
                         break;
                 case 3:
-                        addState(mysql,usr);
+                        addState(mysql);
                         break;
                 case 4:
                         addSector(mysql);
                         break;
                 case 5:
-                        // addType();
+                        addType(mysql);
                         break;
                 }
         } else if (strcmp(usr.type_of,"Administrador") == 0) {

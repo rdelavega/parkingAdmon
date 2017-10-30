@@ -51,7 +51,7 @@ void addInstitute(MYSQL *mysql) {
 void saveInstitute(MYSQL *mysql, char sFor[][100], char nFor[][100]) {
         char buffer[1024];
         sprintf(buffer,"INSERT INTO p1_institution(name,typeof,address,phone,rfc) VALUES(%s,%s,%s,%s,%s)",sFor[0],nFor[3],nFor[2],nFor[1],nFor[0]);
-        // printf("%s\n", buffer);
+        printf("%s\n", buffer);
         if (dbInsert(buffer,mysql) == true) {
                 printf("\n\n\tSe agrego %s correctamente!!!\n",sFor[0]);
         }
@@ -162,10 +162,9 @@ int selType(char *usertype) {
 * y posteriormente lo agrega a la base.    *
 * @method addState                         *
 * @param  mysql    pointer a DB            *
-* @param  usr      user's struct           *
 ********************************************/
 
-void addState(MYSQL *mysql, User usr) {
+void addState(MYSQL *mysql) {
         char sFor[1][100];
         char buffer[1024];
 
@@ -185,6 +184,13 @@ void addState(MYSQL *mysql, User usr) {
         }
 }
 
+/********************************************
+* Solicita el nombre del sector al usuario *
+* y posteriormente lo agrega a la base.    *
+* @method addSector                        *
+* @param  mysql    pointer a DB            *
+********************************************/
+
 void addSector(MYSQL *mysql) {
         char sFor[1][100];
         char buffer[1024];
@@ -193,7 +199,7 @@ void addSector(MYSQL *mysql) {
         system("clear");
         if (x != -1) {
                 printf("\n\n\n\tIngresa los datos a continuacion solicitados (No hay distincion entre\n\tmayusculas y minusculas):\n\n");
-                printf("\tNombre del estado:\n");
+                printf("\tNombre de la zona:\n");
                 fgets(sFor[0],100,stdin);
 
                 if (valForced(sFor,1) == true) {
@@ -205,6 +211,26 @@ void addSector(MYSQL *mysql) {
                 }
         } else {
                 printf("\n\tSeleccion de estado no valida!!\n");
+        }
+        printf("\tPresione Enter para continuar...");
+        getchar();
+}
+
+void addType(MYSQL *mysql) {
+        char sFor[1][100];
+        char buffer[1024];
+
+        system("clear");
+        printf("\n\n\n\tIngresa los datos a continuacion solicitados (No hay distincion entre\n\tmayusculas y minusculas):\n\n");
+        printf("\tNombre del tipo:\n");
+        fgets(sFor[0],100,stdin);
+
+        if (valForced(sFor,1) == true) {
+                sprintf(buffer,"INSERT INTO p1_type(typeof) VALUES(%s)",sFor[0]);
+                printf("%s\n", buffer);
+                if (dbInsert(buffer,mysql) == true) {
+                        printf("\n\n\tSe agrego %s correctamente!!!\n",sFor[0]);
+                }
         }
         printf("\tPresione Enter para continuar...");
         getchar();

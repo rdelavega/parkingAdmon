@@ -57,7 +57,7 @@ extern int selInstitute(MYSQL *mysql, User usr);
 extern int selType(char *usertype);
 extern void saveUser(char sFor[][100], char nFor[][100], char *inst, MYSQL *mysql);
 extern int selVehicle(MYSQL *mysql, int usr, char *ctr);
-extern void addState(MYSQL *mysql, User usr);
+extern void addState(MYSQL *mysql);
 extern int selState(MYSQL *mysql);
 extern int selSector(MYSQL *mysql);
 extern int selParking(MYSQL *mysql);
