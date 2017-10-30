@@ -50,6 +50,16 @@ int selInstitute(MYSQL *mysql, User usr) {
         return opc;
 }
 
+/*******************************************************
+* Muestra al usuarios los vehiculos que le pertenecen *
+* y regresa como pointer su matricula.                *
+* @method selVehicle                                  *
+* @param  mysql      pointer a db                     *
+* @param  usr        user's struct                    *
+* @param  ctr        matricula                        *
+* @return            -1 opcion invalida               *
+*******************************************************/
+
 int selVehicle(MYSQL *mysql, int usr, char *ctr) {
         char buffer[1024], str[20];
         MYSQL_RES *res;
@@ -80,6 +90,42 @@ int selVehicle(MYSQL *mysql, int usr, char *ctr) {
                         if (opc == car[j].id_vehicle) {
                                 val = true;
                                 strcpy(ctr,car[j].record);
+                        }
+                }
+                if (val != true) {
+                        opc = -1;
+                }
+        }
+        return opc;
+}
+
+int selState(MYSQL *mysql) {
+        char buffer[1024], str[20];
+        MYSQL_RES *res;
+        MYSQL_ROW row;
+        int opc = 0, i = 0, num[100];
+        bool val = false;
+
+        sprintf(buffer,"SELECT id_state, name FROM p1_state");
+        dbQuery(buffer,mysql,&res);
+
+        printf("\n\n\tElige un estado:\n");
+        while ((row = mysql_fetch_row(res))) {
+                printf("\t\t%s) %s\n", row[0], row[1]);
+                sprintf(str,"%s\n",row[0]);
+                num[i] = strInt(str);
+                i++;
+        }
+
+        if (i == 0) {
+                printf("\n\tNo hay estados registrados!!\n");
+                opc = -1;
+        } else {
+                fgets(str,20,stdin);
+                opc = strInt(str);
+                for (int j = 0; j < i; j++) {
+                        if (opc == num[j]) {
+                                val = true;
                         }
                 }
                 if (val != true) {

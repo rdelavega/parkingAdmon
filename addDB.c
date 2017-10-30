@@ -158,11 +158,5 @@ int selType(char *usertype) {
 }
 
 void addState(MYSQL *mysql, User usr) {
-        char ctr[20];
-        if (selVehicle(mysql,1,ctr) != -1) {
-                printf("%s\n", ctr);
-        } else {
-                printf("%s\n", ctr);
-        }
-        getchar();
+        printf("%d\n", selState(mysql));
 }
