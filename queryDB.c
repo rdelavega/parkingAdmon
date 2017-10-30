@@ -99,6 +99,14 @@ int selVehicle(MYSQL *mysql, int usr, char *ctr) {
         return opc;
 }
 
+/*********************************************************
+* Muestra los estados registrados y permite al usuario  *
+* seleccionar uno.                                      *
+* @method selState                                      *
+* @param  mysql    pointer a DB                         *
+* @return          -1 opcion invalida                   *
+*********************************************************/
+
 int selState(MYSQL *mysql) {
         char buffer[1024], str[20];
         MYSQL_RES *res;
@@ -135,12 +143,19 @@ int selState(MYSQL *mysql) {
         return opc;
 }
 
+/*********************************************************
+* Muestra las zonas registradas y permite al usuario    *
+* seleccionar uno.                                      *
+* @method selSector                                     *
+* @param  mysql    pointer a DB                         *
+* @return          -1 opcion invalida                   *
+*********************************************************/
+
 int selSector(MYSQL *mysql) {
         char buffer[1024], str[20];
         MYSQL_RES *res;
         MYSQL_ROW row;
         int opc = 0, i = 0, num[100];
-        bool val = false;
 
         int x = selState(mysql);
         if (x != -1) {
@@ -149,7 +164,7 @@ int selSector(MYSQL *mysql) {
 
                 printf("\n\n\tElige un sector:\n");
                 while ((row = mysql_fetch_row(res))) {
-                        printf("\t\t%s) %s\n", row[0], row[1]);
+                        printf("\t\t%d) %s %s\n", (i+1), row[0], row[1]);
                         sprintf(str,"%s\n",row[0]);
                         num[i] = strInt(str);
                         i++;
@@ -161,13 +176,8 @@ int selSector(MYSQL *mysql) {
                 } else {
                         fgets(str,20,stdin);
                         opc = strInt(str);
-                        for (int j = 0; j < i; j++) {
-                                if (opc == num[j]) {
-                                        val = true;
-                                }
-                        }
-                        if (val != true) {
-                                opc = -1;
+                        if (opc > 1 && opc <= (i+1)) {
+                                opc = num[i];
                         }
                 }
         } else {
@@ -175,6 +185,14 @@ int selSector(MYSQL *mysql) {
         }
         return opc;
 }
+
+/*********************************************************
+* Muestra los estac. registrados y permite al usuario   *
+* seleccionar uno.                                      *
+* @method selParking                                    *
+* @param  mysql    pointer a DB                         *
+* @return          -1 opcion invalida                   *
+*********************************************************/
 
 int selParking(MYSQL *mysql) {
         char buffer[1024], str[20];
