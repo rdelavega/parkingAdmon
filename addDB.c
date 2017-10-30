@@ -187,6 +187,7 @@ void addState(MYSQL *mysql, User usr) {
 
 void addSector(MYSQL *mysql) {
         char sFor[1][100];
+        char buffer[1024];
         int x = selState(mysql);
 
         system("clear");
