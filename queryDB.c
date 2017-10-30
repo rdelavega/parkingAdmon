@@ -158,6 +158,7 @@ int selSector(MYSQL *mysql) {
         int opc = 0, i = 0, num[100];
 
         int x = selState(mysql);
+        printf("%d\n",x);
         if (x != -1) {
                 sprintf(buffer,"SELECT id_sector, name FROM p1_sector WHERE id_state = %d",x);
                 dbQuery(buffer,mysql,&res);
@@ -202,6 +203,7 @@ int selParking(MYSQL *mysql) {
         bool val = false;
 
         int x = selSector(mysql);
+        printf("%d\n",x);
         if (x != -1) {
                 sprintf(buffer,"SELECT id_parking, address FROM p1_parking WHERE id_sector = %d",x);
                 dbQuery(buffer,mysql,&res);
