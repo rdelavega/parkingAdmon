@@ -156,7 +156,48 @@ int selSector(MYSQL *mysql) {
                 }
 
                 if (i == 0) {
-                        printf("\n\tNo hay zonas registrados!!\n");
+                        printf("\n\tNo hay zonas registradas!!\n");
+                        opc = -1;
+                } else {
+                        fgets(str,20,stdin);
+                        opc = strInt(str);
+                        for (int j = 0; j < i; j++) {
+                                if (opc == num[j]) {
+                                        val = true;
+                                }
+                        }
+                        if (val != true) {
+                                opc = -1;
+                        }
+                }
+        } else {
+                opc = -1;
+        }
+        return opc;
+}
+
+int selParking(MYSQL *mysql) {
+        char buffer[1024], str[20];
+        MYSQL_RES *res;
+        MYSQL_ROW row;
+        int opc = 0, i = 0, num[100];
+        bool val = false;
+
+        int x = selSector(mysql);
+        if (x != -1) {
+                sprintf(buffer,"SELECT id_parking, address FROM p1_parking WHERE id_sector = %d",x);
+                dbQuery(buffer,mysql,&res);
+
+                printf("\n\n\tElige un estacionamiento:\n");
+                while ((row = mysql_fetch_row(res))) {
+                        printf("\t\t%s) %s\n", row[0], row[1]);
+                        sprintf(str,"%s\n",row[0]);
+                        num[i] = strInt(str);
+                        i++;
+                }
+
+                if (i == 0) {
+                        printf("\n\tNo hay estacionamientos registrados!!\n");
                         opc = -1;
                 } else {
                         fgets(str,20,stdin);

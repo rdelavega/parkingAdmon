@@ -60,3 +60,4 @@ extern int selVehicle(MYSQL *mysql, int usr, char *ctr);
 extern void addState(MYSQL *mysql, User usr);
 extern int selState(MYSQL *mysql);
 extern int selSector(MYSQL *mysql);
+extern int selParking(MYSQL *mysql);
