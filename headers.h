@@ -59,3 +59,4 @@ extern void saveUser(char sFor[][100], char nFor[][100], char *inst, MYSQL *mysq
 extern int selVehicle(MYSQL *mysql, int usr, char *ctr);
 extern void addState(MYSQL *mysql, User usr);
 extern int selState(MYSQL *mysql);
+extern int selSector(MYSQL *mysql);

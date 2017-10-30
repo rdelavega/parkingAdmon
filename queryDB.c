@@ -134,3 +134,44 @@ int selState(MYSQL *mysql) {
         }
         return opc;
 }
+
+int selSector(MYSQL *mysql) {
+        char buffer[1024], str[20];
+        MYSQL_RES *res;
+        MYSQL_ROW row;
+        int opc = 0, i = 0, num[100];
+        bool val = false;
+
+        int x = selState(mysql);
+        if (x != -1) {
+                sprintf(buffer,"SELECT id_sector, name FROM p1_sector WHERE id_state = %d",x);
+                dbQuery(buffer,mysql,&res);
+
+                printf("\n\n\tElige un sector:\n");
+                while ((row = mysql_fetch_row(res))) {
+                        printf("\t\t%s) %s\n", row[0], row[1]);
+                        sprintf(str,"%s\n",row[0]);
+                        num[i] = strInt(str);
+                        i++;
+                }
+
+                if (i == 0) {
+                        printf("\n\tNo hay zonas registrados!!\n");
+                        opc = -1;
+                } else {
+                        fgets(str,20,stdin);
+                        opc = strInt(str);
+                        for (int j = 0; j < i; j++) {
+                                if (opc == num[j]) {
+                                        val = true;
+                                }
+                        }
+                        if (val != true) {
+                                opc = -1;
+                        }
+                }
+        } else {
+                opc = -1;
+        }
+        return opc;
+}
