@@ -158,6 +158,6 @@ int selType(char *usertype) {
 }
 
 void addState(MYSQL *mysql, User usr) {
-        printf("%d\n", selSector(mysql));
+        printf("%d\n", selParking(mysql));
         getchar();
 }
