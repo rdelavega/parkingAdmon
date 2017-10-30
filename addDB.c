@@ -164,4 +164,5 @@ void addState(MYSQL *mysql, User usr) {
         } else {
                 printf("%s\n", ctr);
         }
+        getchar();
 }

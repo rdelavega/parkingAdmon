@@ -63,8 +63,8 @@ int selVehicle(MYSQL *mysql, int usr, char *ctr) {
 
         printf("\n\n\tElige un vehiculo:\n");
         while ((row = mysql_fetch_row(res))) {
-                printf("\t\t%d) %s, %s (%s)\n", i, row[0], row[1], row[3]);
-                sprintf(car[i-1].record,"%s",row[3]);
+                printf("\t\t%d) %s, %s (%s)\n", i, row[0], row[1], row[2]);
+                sprintf(car[i-1].record,"%s",row[2]);
                 car[i-1].id_vehicle = i;
                 i++;
         }
