@@ -22,6 +22,11 @@ typedef struct user {
   int id_institution;
 } User;
 
+typedef struct vehicle {
+  int id_vehicle;
+  char record[20];
+} Vehicle;
+
 ////////////////
 // Prototypes //
 ////////////////
@@ -51,3 +56,4 @@ extern void addUser(MYSQL *mysql, User usr);
 extern int selInstitute(MYSQL *mysql, User usr);
 extern int selType(char *usertype);
 extern void saveUser(char sFor[][100], char nFor[][100], char *inst, MYSQL *mysql);
+extern int selVehicle(MYSQL *mysql, int usr, char *ctr);

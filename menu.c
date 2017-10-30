@@ -69,7 +69,7 @@ void insertRoute(User usr, int x, MYSQL *mysql) {
                         addUser(mysql,usr);
                         break;
                 case 3:
-                        // addState();
+                        addState(mysql,usr);
                         break;
                 case 4:
                         // addSector();

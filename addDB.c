@@ -156,3 +156,12 @@ int selType(char *usertype) {
         }
         return opc;
 }
+
+void addState(MYSQL *mysql, User usr) {
+        char ctr[20];
+        if (selVehicle(mysql,usr,ctr) != -1) {
+                printf("%s\n", ctr);
+        } else {
+                printf("%s\n", ctr);
+        }
+}
