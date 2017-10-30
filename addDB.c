@@ -157,6 +157,14 @@ int selType(char *usertype) {
         return opc;
 }
 
+/********************************************
+* Solicita el nombre del estado al usuario *
+* y posteriormente lo agrega a la base.    *
+* @method addState                         *
+* @param  mysql    pointer a DB            *
+* @param  usr      user's struct           *
+********************************************/
+
 void addState(MYSQL *mysql, User usr) {
         char sFor[1][100];
         char buffer[1024];
@@ -171,6 +179,32 @@ void addState(MYSQL *mysql, User usr) {
                 printf("%s\n", buffer);
                 if (dbInsert(buffer,mysql) == true) {
                         printf("\n\n\tSe agrego %s correctamente!!!\n",sFor[0]);
+                        printf("\tPresione Enter para continuar...");
+                        getchar();
                 }
         }
+}
+
+void addSector(MYSQL *mysql) {
+        char sFor[1][100];
+        int x = selState(mysql);
+
+        system("clear");
+        if (x != -1) {
+                printf("\n\n\n\tIngresa los datos a continuacion solicitados (No hay distincion entre\n\tmayusculas y minusculas):\n\n");
+                printf("\tNombre del estado:\n");
+                fgets(sFor[0],100,stdin);
+
+                if (valForced(sFor,1) == true) {
+                        sprintf(buffer,"INSERT INTO p1_sector(name,id_state) VALUES(%s,%d)",sFor[0],x);
+                        printf("%s\n", buffer);
+                        if (dbInsert(buffer,mysql) == true) {
+                                printf("\n\n\tSe agrego %s correctamente!!!\n",sFor[0]);
+                        }
+                }
+        } else {
+                printf("\n\tSeleccion de estado no valida!!\n");
+        }
+        printf("\tPresione Enter para continuar...");
+        getchar();
 }
