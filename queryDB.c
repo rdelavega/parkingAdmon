@@ -164,7 +164,7 @@ int selSector(MYSQL *mysql) {
 
                 printf("\n\n\tElige un sector:\n");
                 while ((row = mysql_fetch_row(res))) {
-                        printf("\t\t%d) %s\n", (i+1), row[1]);
+                        printf("\t\t%d) %s %s\n", (i+1),row[0], row[1]);
                         sprintf(str,"%s\n",row[0]);
                         num[i] = strInt(str);
                         i++;
