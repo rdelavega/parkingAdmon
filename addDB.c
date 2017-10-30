@@ -158,6 +158,19 @@ int selType(char *usertype) {
 }
 
 void addState(MYSQL *mysql, User usr) {
-        printf("%d\n", selParking(mysql));
-        getchar();
+        char sFor[1][100];
+        char buffer[1024];
+
+        system("clear");
+        printf("\n\n\n\tIngresa los datos a continuacion solicitados (No hay distincion entre\n\tmayusculas y minusculas):\n\n");
+        printf("\tNombre del estado:\n");
+        fgets(sFor[0],100,stdin);
+
+        if (valForced(sFor,1) == true) {
+                sprintf(buffer,"INSERT INTO p1_state(name) VALUES(%s)",sFor[0]);
+                printf("%s\n", buffer);
+                if (dbInsert(buffer,mysql) == true) {
+                        printf("\n\n\tSe agrego %s correctamente!!!\n",sFor[0]);
+                }
+        }
 }
