@@ -252,7 +252,7 @@ int selParkingInstitute(MYSQL *mysql, int usr) {
 
         printf("\n\n\tElige un estacionamiento:\n");
         while ((row = mysql_fetch_row(res))) {
-                printf("\t\t%d) %s %s\n", (i+1),row[2], row[1]);
+                printf("\t\t%d) %s %s %s\n", (i+1),row[0],row[2], row[1]);
                 sprintf(str,"%s\n",row[0]);
                 num[i] = strInt(str);
                 i++;
