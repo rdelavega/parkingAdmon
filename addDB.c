@@ -287,6 +287,13 @@ void addParking(MYSQL *mysql, User usr) {
         getchar();
 }
 
+/******************************************
+* Solicita al usuario los datos y agrega *
+* a la base de datos.                    *
+* @param mysql   pointer a DB            *
+* @parma usr     user's struct           *
+******************************************/
+
 void addSchedule(MYSQL *mysql, User usr) {
         char sFor[2][100];
         char str[20], buffer[1024];
@@ -332,7 +339,35 @@ void addSchedule(MYSQL *mysql, User usr) {
                 sprintf(buffer,"INSERT INTO p1_schedule(DAY,startof,endof,id_parking) VALUES(%s,%s,%s,%d)",str,sFor[0],sFor[1],park);
                 printf("%s\n", buffer);
                 if (dbInsert(buffer,mysql) == true) {
-                        printf("\n\n\tSe agrego %s correctamente!!!\n",sFor[0]);
+                        printf("\n\n\tSe agrego horario correctamente!!!\n");
+                }
+        } else {
+                printf("\n\n\tERROR en datos ingresados\n\tIntente de nuevo!!!\n\n");
+        }
+        printf("\tPresione Enter para continuar...");
+        getchar();
+}
+
+void addVehicle(MYSQL *mysql, User usr) {
+        char sFor[4][100];
+        char str[20], buffer[1024];
+
+        system("clear");
+        printf("\n\n\n\tIngresa los datos a continuacion solicitados (No hay distincion entre\n\tmayusculas y minusculas):\n\n");
+        printf("\tMatricula:\n");
+        fgets(sFor[0],100,stdin);
+        printf("\tModelo:\n");
+        fgets(sFor[1],100,stdin);
+        printf("\tMarca:\n");
+        fgets(sFor[2],100,stdin);
+        printf("\tColor:\n");
+        fgets(sFor[3],100,stdin);
+
+        if (valForced(sFor,4) == true) {
+                sprintf(buffer,"INSERT INTO p1_vehicle(record,model,brand,color,id_user) VALUES(%s,%s,%s,%s,%d)",sFor[0],sFor[1],sFor[2],sFor[3],usr.id_user);
+                printf("%s\n", buffer);
+                if (dbInsert(buffer,mysql) == true) {
+                        printf("\n\n\tSe agrego horario correctamente!!!\n");
                 }
         } else {
                 printf("\n\n\tERROR en datos ingresados\n\tIntente de nuevo!!!\n\n");

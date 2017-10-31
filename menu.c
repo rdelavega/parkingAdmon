@@ -93,7 +93,7 @@ void insertRoute(User usr, int x, MYSQL *mysql) {
         } else if (strcmp(usr.type_of,"Cliente") == 0) {
                 switch (x) {
                 case 1:
-                        // addVehicle();
+                        addVehicle(mysql,usr);
                         break;
                 case 2:
                         // addPark();
