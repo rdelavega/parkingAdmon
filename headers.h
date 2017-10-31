@@ -79,3 +79,4 @@ extern void sectorUsers(MYSQL *mysql);
 extern void hourParking(MYSQL *mysql);
 extern void usersSector(MYSQL *mysql);
 extern void space(MYSQL *mysql);
+extern void typePlaces(MYSQL *mysql, User usr);

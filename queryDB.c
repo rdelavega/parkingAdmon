@@ -548,3 +548,41 @@ void space(MYSQL *mysql) {
         printf("\n\n\n\tPresione Enter para continuar...");
         getchar();
 }
+
+void typePlaces(MYSQL *mysql, User usr) {
+        char buffer[1024];
+        MYSQL_RES *res;
+        MYSQL_ROW row;
+        int i = 0;
+        char sFor[2][100];
+
+        system("clear");
+        printf("\n\n\n\tTipos de lugares usados\n\n\n\n");
+
+        printf("\tFecha inicio (AAAA-MM-DD)\n");
+        fgets(sFor[0],100,stdin);
+
+        printf("\tFecha fin (AAAA-MM-DD)\n");
+        fgets(sFor[1],100,stdin);
+
+        if (valForced(sFor,2) == true) {
+
+                sprintf(buffer,"SELECT record, date(entryof), tp.typeof FROM p1_park LEFT JOIN p1_vehicle USING(record) LEFT JOIN p1_users USING(id_user) LEFT JOIN p1_parking USING(id_parking) LEFT JOIN p1_type AS tp USING(id_type) WHERE id_user = %d AND date(entryof) >= %s AND date(entryof) <= %s ORDER BY date(entryof);",usr.id_user,sFor[0],sFor[1]);
+                dbQuery(buffer,mysql,&res);
+
+                while ((row = mysql_fetch_row(res))) {
+                        printf("\t\t%s lugares disponibles\n", row[0]);
+                        i++;
+                }
+
+                if (i == 0) {
+                        printf("\n\tNo hay registros!!\n");
+                }
+
+        } else {
+                printf("\n\n\tERROR en datos ingresados\n\tIntente de nuevo!!!\n\n");
+        }
+
+        printf("\n\n\n\tPresione Enter para continuar...");
+        getchar();
+}
