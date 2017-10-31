@@ -247,12 +247,12 @@ int selParkingInstitute(MYSQL *mysql, int usr) {
         int opc = 0, i = 0, num[100];
         bool val = false;
 
-        sprintf(buffer,"SELECT id_parking, address FROM p1_parking WHERE id_institution = %d",usr);
+        sprintf(buffer,"SELECT id_parking, address, id_institution FROM p1_parking WHERE id_institution = %d",usr);
         dbQuery(buffer,mysql,&res);
 
         printf("\n\n\tElige un estacionamiento:\n");
         while ((row = mysql_fetch_row(res))) {
-                printf("\t\t%d) %s\n", (i+1), row[1]);
+                printf("\t\t%d) %s %s\n", (i+1),row[2], row[1]);
                 sprintf(str,"%s\n",row[0]);
                 num[i] = strInt(str);
                 i++;
