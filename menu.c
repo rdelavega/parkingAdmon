@@ -140,10 +140,7 @@ void queryRoute(User usr, int x, MYSQL *mysql) {
                         usersSector(mysql);
                         break;
                 case 9:
-                        //space();
-                        break;
-                case 0:
-                        //previous();
+                        space(mysql);
                         break;
                 }
         } else if (strcmp(usr.type_of,"Cliente") == 0) {
@@ -173,16 +170,13 @@ void queryRoute(User usr, int x, MYSQL *mysql) {
                         usersSector(mysql);
                         break;
                 case 9:
-                        //space();
+                        space(mysql);
                         break;
                 case 10:
                         // typePlaces();
                         break;
                 case 11:
                         // total();
-                        break;
-                case 0:
-                        // previous();
                         break;
                 }
         }

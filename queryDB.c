@@ -521,3 +521,30 @@ void usersSector(MYSQL *mysql) {
         printf("\n\n\n\tPresione Enter para continuar...");
         getchar();
 }
+
+void space(MYSQL *mysql) {
+        char buffer[1024];
+        MYSQL_RES *res;
+        MYSQL_ROW row;
+        int i = 0;
+
+        system("clear");
+        printf("\n\n\n\tLugares disponibles en un estacionamiento particular\n\n\n\n");
+
+        int x = selParking(mysql);
+
+        sprintf(buffer,"SELECT p1_resta(sizeof,count(id_park)) AS disponibles FROM p1_parking LEFT JOIN p1_park USING(id_parking) WHERE id_parking = %d AND exitof IS NULL GROUP BY id_parking HAVING count(id_park) < avg(sizeof);",x);
+        dbQuery(buffer,mysql,&res);
+
+        while ((row = mysql_fetch_row(res))) {
+                printf("\t\t%s lugares disponibles\n", row[0]);
+                i++;
+        }
+
+        if (i == 0) {
+                printf("\n\tNo hay registros!!\n");
+        }
+
+        printf("\n\n\n\tPresione Enter para continuar...");
+        getchar();
+}
