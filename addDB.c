@@ -288,19 +288,52 @@ void addParking(MYSQL *mysql, User usr) {
 }
 
 void addSchedule(MYSQL *mysql, User usr) {
-        char sFor[2][100];
+        char sFor[3][100];
         char str[20], buffer[1024];
-        int day = 0;
+        int day = 0, park = 0;
 
         system("clear");
         printf("\n\n\n\tIngresa los datos a continuacion solicitados (No hay distincion entre\n\tmayusculas y minusculas):\n\n");
-        printf("\tIndica el dia de la semana:\n\t\t1) Lun\n\t\t2) Tue\n\t\t3) Wed\n\t\t4) Thu\n\t\t5) Fri\n\t\t6) Sat\n\t\t7) Sun\n");
+        printf("\tIndica el dia de la semana:\n\t\t1) Mon\n\t\t2) Tue\n\t\t3) Wed\n\t\t4) Thu\n\t\t5) Fri\n\t\t6) Sat\n\t\t7) Sun\n");
         fgets(str,20,stdin);
         day = strInt(str);
+        switch (day) {
+        case 1:
+                sprintf(sFor[2],"mon\n");
+                break;
+        case 2:
+                sprintf(sFor[2],"tue\n");
+                break;
+        case 3:
+                sprintf(sFor[2],"wed\n");
+                break;
+        case 4:
+                sprintf(sFor[2],"thu\n");
+                break;
+        case 5:
+                sprintf(sFor[2],"fri\n");
+                break;
+        case 6:
+                sprintf(sFor[2],"sat\n");
+                break;
+        case 7:
+                sprintf(sFor[2],"sun\n");
+                break;
+        }
         printf("\tHora de inicio (HH:MM):\n");
         fgets(sFor[0],100,stdin);
         printf("\tHora de fin (HH:MM):\n");
         fgets(sFor[1],100,stdin);
-        printf("%d\n", selParkingInstitute(mysql,usr.id_institution));
+        park = selParkingInstitute(mysql,usr.id_institution);
+        if (valForced(sFor,3) == true && park != -1 && day != -1) {
+                sprintf(buffer,"INSERT INTO p1_schedule(DAY,startof,endof,id_parking) VALUES(%s,%s,%s,%d)",sFor[0],sFor[1],sFor[2],park);
+                printf("%s\n", buffer);
+                if (dbInsert(buffer,mysql) == true) {
+                        printf("\n\n\tSe agrego %s correctamente!!!\n",sFor[0]);
+                }
+        } else {
+                printf("\n\n\tERROR en datos ingresados\n\tIntente de nuevo!!!\n\n");
+        }
+        printf("\tPresione Enter para continuar...");
         getchar();
 }
