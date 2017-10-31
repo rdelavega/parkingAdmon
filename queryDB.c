@@ -398,7 +398,7 @@ void usersRegis(MYSQL *mysql) {
         int i = 0;
 
         system("clear");
-        printf("\n\n\n\tEstacionamientos disponibles en una zona determinada\n\n\n\n");
+        printf("\n\n\n\tUsuarios registrados en el sistema\n\n\n\n");
 
         sprintf(buffer,"SELECT concat(l_name,', ',name) AS nombre FROM p1_users ORDER BY l_name;");
         dbQuery(buffer,mysql,&res);
@@ -423,7 +423,7 @@ void scheduleParking(MYSQL *mysql) {
         int i = 0;
 
         system("clear");
-        printf("\n\n\n\tEstacionamientos disponibles en una zona determinada\n\n\n\n");
+        printf("\n\n\n\tHorarios de un estacionamiento en particular\n\n\n\n");
 
         int x = selParking(mysql);
 
@@ -432,6 +432,31 @@ void scheduleParking(MYSQL *mysql) {
 
         while ((row = mysql_fetch_row(res))) {
                 printf("\t\t| %s | %s | %s |\n", row[0], row[1], row[2]);
+                i++;
+        }
+
+        if (i == 0) {
+                printf("\n\tNo hay registros!!\n");
+        }
+
+        printf("\n\n\n\tPresione Enter para continuar...");
+        getchar();
+}
+
+void sectorUsers(MYSQL *mysql) {
+        char buffer[1024];
+        MYSQL_RES *res;
+        MYSQL_ROW row;
+        int i = 0;
+
+        system("clear");
+        printf("\n\n\n\tZonas mas concurridas\n\n\n\n");
+
+        sprintf(buffer,"SELECT name FROM p1_park LEFT JOIN p1_parking USING(id_parking) LEFT JOIN p1_sector USING(id_sector) GROUP BY id_sector HAVING count(id_park) = (SELECT count(id_park) FROM p1_park LEFT JOIN p1_parking USING(id_parking) GROUP BY id_sector ORDER BY count(id_park) DESC LIMIT 1);");
+        dbQuery(buffer,mysql,&res);
+
+        while ((row = mysql_fetch_row(res))) {
+                printf("\t\t%s\n", row[0]);
                 i++;
         }
 
