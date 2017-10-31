@@ -76,6 +76,7 @@ extern void parkingSector(MYSQL *mysql);
 extern void usersRegis(MYSQL *mysql);
 extern void scheduleParking(MYSQL *mysql);
 extern void sectorUsers(MYSQL *mysql);
+extern void hourParking(MYSQL *mysql);
 //extern void parkingSector();
 //extern void usersRegis();
 //extern void scheduleParking();

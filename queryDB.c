@@ -467,3 +467,30 @@ void sectorUsers(MYSQL *mysql) {
         printf("\n\n\n\tPresione Enter para continuar...");
         getchar();
 }
+
+void hourParking(MYSQL *mysql) {
+        char buffer[1024];
+        MYSQL_RES *res;
+        MYSQL_ROW row;
+        int i = 0;
+
+        system("clear");
+        printf("\n\n\n\tHorarios mas concurridos por estacionamiento\n\n\n\n");
+
+        int x = selParking(mysql);
+
+        sprintf(buffer,"SELECT hour(entryof) FROM p1_park LEFT JOIN p1_parking USING(id_parking) WHERE id_parking = %d GROUP BY hour(entryof) HAVING count(id_park) = (SELECT count(id_park) FROM p1_park LEFT JOIN p1_parking USING(id_parking) WHERE id_parking = %d GROUP BY hour(entryof) ORDER BY count(id_park) DESC LIMIT 1);",x,x);
+        dbQuery(buffer,mysql,&res);
+
+        while ((row = mysql_fetch_row(res))) {
+                printf("\t\t%s\n", row[0]);
+                i++;
+        }
+
+        if (i == 0) {
+                printf("\n\tNo hay registros!!\n");
+        }
+
+        printf("\n\n\n\tPresione Enter para continuar...");
+        getchar();
+}
