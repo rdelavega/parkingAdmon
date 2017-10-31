@@ -288,7 +288,7 @@ void addParking(MYSQL *mysql, User usr) {
 }
 
 void addSchedule(MYSQL *mysql, User usr) {
-        char sFor[3][100];
+        char sFor[2][100];
         char str[20], buffer[1024];
         int day = 0, park = 0;
 
@@ -299,25 +299,28 @@ void addSchedule(MYSQL *mysql, User usr) {
         day = strInt(str);
         switch (day) {
         case 1:
-                sprintf(sFor[2],"mon\n");
+                sprintf(str,"mon");
                 break;
         case 2:
-                sprintf(sFor[2],"tue\n");
+                sprintf(str,"tue");
                 break;
         case 3:
-                sprintf(sFor[2],"wed\n");
+                sprintf(str,"wed");
                 break;
         case 4:
-                sprintf(sFor[2],"thu\n");
+                sprintf(str,"thu");
                 break;
         case 5:
-                sprintf(sFor[2],"fri\n");
+                sprintf(str,"fri");
                 break;
         case 6:
-                sprintf(sFor[2],"sat\n");
+                sprintf(str,"sat");
                 break;
         case 7:
-                sprintf(sFor[2],"sun\n");
+                sprintf(str,"sun");
+                break;
+        default:
+                sprintf(str,"NULL");
                 break;
         }
         printf("\tHora de inicio (HH:MM):\n");
@@ -325,8 +328,8 @@ void addSchedule(MYSQL *mysql, User usr) {
         printf("\tHora de fin (HH:MM):\n");
         fgets(sFor[1],100,stdin);
         park = selParkingInstitute(mysql,usr.id_institution);
-        if (valForced(sFor,3) == true && park != -1 && day != -1) {
-                sprintf(buffer,"INSERT INTO p1_schedule(DAY,startof,endof,id_parking) VALUES(%s,%s,%s,%d)",sFor[2],sFor[2],sFor[1],park);
+        if (valForced(sFor,2) == true && park != -1 && day != -1) {
+                sprintf(buffer,"INSERT INTO p1_schedule(DAY,startof,endof,id_parking) VALUES(%s,%s,%s,%d)",str,sFor[2],sFor[1],park);
                 printf("%s\n", buffer);
                 if (dbInsert(buffer,mysql) == true) {
                         printf("\n\n\tSe agrego %s correctamente!!!\n",sFor[0]);
