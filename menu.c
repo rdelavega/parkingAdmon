@@ -125,7 +125,7 @@ void queryRoute(User usr, int x, MYSQL *mysql) {
                         parkingSector(mysql);
                         break;
                 case 4:
-                        // usersRegis();
+                        usersRegis(mysql);
                         break;
                 case 5:
                         // scheduleParking();
@@ -158,7 +158,7 @@ void queryRoute(User usr, int x, MYSQL *mysql) {
                         parkingSector(mysql);
                         break;
                 case 4:
-                        // usersRegis();
+                        usersRegis(mysql);
                         break;
                 case 5:
                         // scheduleParking();

@@ -158,7 +158,6 @@ int selSector(MYSQL *mysql) {
         int opc = 0, i = 0, num[100];
 
         int x = selState(mysql);
-        printf("%d\n",x);
         if (x != -1) {
                 sprintf(buffer,"SELECT id_sector, name FROM p1_sector WHERE id_state = %d",x);
                 dbQuery(buffer,mysql,&res);
@@ -203,7 +202,6 @@ int selParking(MYSQL *mysql) {
         bool val = false;
 
         int x = selSector(mysql);
-        printf("%d\n",x);
         if (x != -1) {
                 sprintf(buffer,"SELECT id_parking, address FROM p1_parking WHERE id_sector = %d",x);
                 dbQuery(buffer,mysql,&res);
@@ -333,7 +331,7 @@ void visitedParking(MYSQL *mysql) {
         }
 
         if (i == 0) {
-                printf("\n\tNo hay tipos registrados!!\n");
+                printf("\n\tNo hay registros!!\n");
         }
 
         printf("\n\n\n\tPresione Enter para continuar...");
@@ -358,7 +356,7 @@ void usersParking(MYSQL *mysql) {
         }
 
         if (i == 0) {
-                printf("\n\tNo hay tipos registrados!!\n");
+                printf("\n\tNo hay registros!!\n");
         }
 
         printf("\n\n\n\tPresione Enter para continuar...");
@@ -385,10 +383,35 @@ void parkingSector(MYSQL *mysql) {
         }
 
         if (i == 0) {
-                printf("\n\tNo hay tipos registrados!!\n");
+                printf("\n\tNo hay registros!!\n");
         }
 
         printf("\n\n\n\tPresione Enter para continuar...");
         getchar();
 
+}
+
+void usersRegis(MYSQL *mysql) {
+        char buffer[1024];
+        MYSQL_RES *res;
+        MYSQL_ROW row;
+        int i = 0;
+
+        system("clear");
+        printf("\n\n\n\tEstacionamientos disponibles en una zona determinada\n\n\n\n");
+
+        sprintf(buffer,"SELECT concat(l_name,' ',l_name2,', ',name) AS nombre FROM p1_users ORDER BY l_name;");
+        dbQuery(buffer,mysql,&res);
+
+        while ((row = mysql_fetch_row(res))) {
+                printf("\t\t%s\n", row[0]);
+                i++;
+        }
+
+        if (i == 0) {
+                printf("\n\tNo hay registros!!\n");
+        }
+
+        printf("\n\n\n\tPresione Enter para continuar...");
+        getchar();
 }
