@@ -217,7 +217,7 @@ void addSector(MYSQL *mysql) {
 }
 
 /******************************************
-* Solicita al usuario los datos y agraga *
+* Solicita al usuario los datos y agrega *
 * una nueva categoria de estacionamiento *
 * @method addType                        *
 * @param  mysql   pointer a DB           *
@@ -242,6 +242,13 @@ void addType(MYSQL *mysql) {
         printf("\tPresione Enter para continuar...");
         getchar();
 }
+
+/******************************************
+* Solicita al usuario los datos y agrega *
+* a la base de datos.                    *
+* @param mysql   pointer a DB            *
+* @parma usr     user's struct           *
+******************************************/
 
 void addParking(MYSQL *mysql, User usr) {
         char sFor[1][100];
@@ -278,4 +285,21 @@ void addParking(MYSQL *mysql, User usr) {
         }
         printf("\tPresione Enter para continuar...");
         getchar();
+}
+
+void addSchedule(MYSQL *mysql, User usr) {
+        char sFor[2][100];
+        char str[20], buffer[1024];
+        int day = 0;
+
+        system("clear");
+        printf("\n\n\n\tIngresa los datos a continuacion solicitados (No hay distincion entre\n\tmayusculas y minusculas):\n\n");
+        printf("\tIndica el dia de la semana:\n\t\t1) Lun\n\t\t2) Tue\n\t\t3) Wed\n\t\t4) Thu\n\t\t5) Fri\n\t\t6) Sat\n\t\t7) Sun\n");
+        fgets(str,20,stdin);
+        day = strInt(str);
+        printf("\tHora de inicio (HH:MM):\n");
+        fgets(sFor[0],100,stdin);
+        printf("\tHora de fin (HH:MM):\n");
+        fgets(sFor[1],100,stdin);
+        printf("%d\n", selParkingInstitute(MYSQL,usr.id_institution));
 }

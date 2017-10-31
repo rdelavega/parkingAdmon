@@ -87,7 +87,7 @@ void insertRoute(User usr, int x, MYSQL *mysql) {
                         addParking(mysql,usr);
                         break;
                 case 3:
-                        // addSchedule();
+                        addSchedule(mysql,usr);
                         break;
                 }
         } else if (strcmp(usr.type_of,"Cliente") == 0) {
