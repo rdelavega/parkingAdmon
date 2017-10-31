@@ -415,3 +415,30 @@ void usersRegis(MYSQL *mysql) {
         printf("\n\n\n\tPresione Enter para continuar...");
         getchar();
 }
+
+void scheduleParking(MYSQL *mysql) {
+        char buffer[1024];
+        MYSQL_RES *res;
+        MYSQL_ROW row;
+        int i = 0;
+
+        system("clear");
+        printf("\n\n\n\tEstacionamientos disponibles en una zona determinada\n\n\n\n");
+
+        int x = selParking(mysql);
+
+        sprintf(buffer,"SELECT DAY, startof, endof FROM p1_schedule LEFT JOIN p1_parking USING(id_parking) WHERE id_parking = %d ORDER BY DAY;",x);
+        dbQuery(buffer,mysql,&res);
+
+        while ((row = mysql_fetch_row(res))) {
+                printf("\t\t| %s | %s | %s |\n", row[0], row[1], row[2]);
+                i++;
+        }
+
+        if (i == 0) {
+                printf("\n\tNo hay registros!!\n");
+        }
+
+        printf("\n\n\n\tPresione Enter para continuar...");
+        getchar();
+}
