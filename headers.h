@@ -67,6 +67,7 @@ extern int selParkingType(MYSQL *mysql);
 extern void addParking(MYSQL *mysql, User usr);
 extern float strFloat (char *str);
 extern int selParkingInstitute(MYSQL *mysql, int usr);
+void addSchedule(MYSQL *mysql, User usr);
 //extern void visitedParking();
 //extern void usersParking();
 //extern void parkingSector();
