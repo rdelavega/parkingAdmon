@@ -149,7 +149,7 @@ void queryRoute(User usr, int x, MYSQL *mysql) {
         } else if (strcmp(usr.type_of,"Cliente") == 0) {
                 switch (x) {
                 case 1:
-                        //visitedParking();
+                        visitedParking(mysql);
                         break;
                 case 2:
                         //usersParking();
