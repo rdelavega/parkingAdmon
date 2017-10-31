@@ -379,6 +379,7 @@ void addVehicle(MYSQL *mysql, User usr) {
 void addPark(MYSQL *mysql, User usr) {
         char sFor[1][100];
         char str[20], buffer[1024];
+        int park = 0;
 
         system("clear");
         printf("\n\n\n\tIngresa los datos a continuacion solicitados (No hay distincion entre\n\tmayusculas y minusculas):\n\n");
