@@ -387,7 +387,7 @@ void addPark(MYSQL *mysql, User usr) {
         park = selParking(mysql);
 
         if (valForced(sFor,1) == true && park != -1) {
-                sprintf(buffer,"INSERT INTO p1_park(entryof,exitof,record,id_parking) VALUES(CURDATE(),NULL,%s,%s,%d)",sFor[0],park);
+                sprintf(buffer,"INSERT INTO p1_park(entryof,exitof,record,id_parking) VALUES(CURDATE(),NULL,%s,%d)",sFor[0],park);
                 printf("%s\n", buffer);
                 if (dbInsert(buffer,mysql) == true) {
                         printf("\n\n\tSe agrego correctamente!!!\n");
