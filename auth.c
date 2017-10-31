@@ -67,19 +67,20 @@ void notNUll(MYSQL_ROW row, char cont[][20], int x) {
 ************************************/
 
 void setStruct(char cont[][20], User *usr) {
+        char str[20];
         strcpy(usr->name,cont[0]);
         strcpy(usr->l_name,cont[1]);
         userType(cont[2]);
         strcpy(usr->type_of,cont[2]);
-        usr->id_user = strInt(cont[3]);
+        sprintf(str,"%s\n",cont[3]);
+        usr->id_user = strInt(str);
 
         if (strcmp(cont[4],"") == 0) {
                 usr->id_institution = -1;
         } else {
-                usr->id_institution = strInt(cont[4]);
+                sprintf(str,"%s\n",cont[4]);
+                usr->id_institution = strInt(str);
         }
-        printf("%d\n", usr->id_institution);
-        printf("%d\n", usr->id_user);
 }
 
 /*************************************
