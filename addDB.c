@@ -367,7 +367,29 @@ void addVehicle(MYSQL *mysql, User usr) {
                 sprintf(buffer,"INSERT INTO p1_vehicle(record,model,brand,color,id_user) VALUES(%s,%s,%s,%s,%d)",sFor[0],sFor[1],sFor[2],sFor[3],usr.id_user);
                 printf("%s\n", buffer);
                 if (dbInsert(buffer,mysql) == true) {
-                        printf("\n\n\tSe agrego horario correctamente!!!\n");
+                        printf("\n\n\tSe agrego %s correctamente!!!\n",sFor[0]);
+                }
+        } else {
+                printf("\n\n\tERROR en datos ingresados\n\tIntente de nuevo!!!\n\n");
+        }
+        printf("\tPresione Enter para continuar...");
+        getchar();
+}
+
+void addPark(MYSQL *mysql, User usr) {
+        char sFor[1][100];
+        char str[20], buffer[1024];
+
+        system("clear");
+        printf("\n\n\n\tIngresa los datos a continuacion solicitados (No hay distincion entre\n\tmayusculas y minusculas):\n\n");
+        selVehicle(mysql,usr.id_user,sFor[0]);
+        park = selParking(mysql);
+
+        if (valForced(sFor,1) == true && park != -1) {
+                sprintf(buffer,"INSERT INTO p1_park(entryof,exitof,record,id_parking) VALUES(CURDATE(),NULL,%s,%s,%d)",sFor[0],park);
+                printf("%s\n", buffer);
+                if (dbInsert(buffer,mysql) == true) {
+                        printf("\n\n\tSe agrego correctamente!!!\n");
                 }
         } else {
                 printf("\n\n\tERROR en datos ingresados\n\tIntente de nuevo!!!\n\n");
