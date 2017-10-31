@@ -78,6 +78,8 @@ void setStruct(char cont[][20], User *usr) {
         } else {
                 usr->id_institution = strInt(cont[4]);
         }
+        printf("%d\n", usr->id_institution);
+        printf("%d\n", usr->id_user);
 }
 
 /*************************************
