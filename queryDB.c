@@ -325,7 +325,7 @@ void visitedParking(MYSQL *mysql) {
         dbQuery(buffer,mysql,&res);
 
         system("clear");
-        printf("\tEstacionamientos mas visitados\n");
+        printf("\tEstacionamientos mas visitados\n\n\n\n");
 
         while ((row = mysql_fetch_row(res))) {
                 printf("\t\t%s\n", row[0]);
@@ -336,6 +336,6 @@ void visitedParking(MYSQL *mysql) {
                 printf("\n\tNo hay tipos registrados!!\n");
         }
 
-        printf("\tPresione Enter para continuar...");
+        printf("\n\n\n\tPresione Enter para continuar...");
         getchar();
 }
