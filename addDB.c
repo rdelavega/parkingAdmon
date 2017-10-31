@@ -299,25 +299,25 @@ void addSchedule(MYSQL *mysql, User usr) {
         day = strInt(str);
         switch (day) {
         case 1:
-                sprintf(str,"mon");
+                sprintf(str,"'mon'");
                 break;
         case 2:
-                sprintf(str,"tue");
+                sprintf(str,"'tue'");
                 break;
         case 3:
-                sprintf(str,"wed");
+                sprintf(str,"'wed'");
                 break;
         case 4:
-                sprintf(str,"thu");
+                sprintf(str,"'thu'");
                 break;
         case 5:
-                sprintf(str,"fri");
+                sprintf(str,"'fri'");
                 break;
         case 6:
-                sprintf(str,"sat");
+                sprintf(str,"'sat'");
                 break;
         case 7:
-                sprintf(str,"sun");
+                sprintf(str,"'sun'");
                 break;
         default:
                 sprintf(str,"NULL");
@@ -329,7 +329,7 @@ void addSchedule(MYSQL *mysql, User usr) {
         fgets(sFor[1],100,stdin);
         park = selParkingInstitute(mysql,usr.id_institution);
         if (valForced(sFor,2) == true && park != -1 && day != -1) {
-                sprintf(buffer,"INSERT INTO p1_schedule(DAY,startof,endof,id_parking) VALUES(%s,%s,%s,%d)",str,sFor[2],sFor[1],park);
+                sprintf(buffer,"INSERT INTO p1_schedule(DAY,startof,endof,id_parking) VALUES(%s,%s,%s,%d)",str,sFor[0],sFor[1],park);
                 printf("%s\n", buffer);
                 if (dbInsert(buffer,mysql) == true) {
                         printf("\n\n\tSe agrego %s correctamente!!!\n",sFor[0]);
