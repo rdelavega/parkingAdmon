@@ -69,6 +69,7 @@ extern float strFloat (char *str);
 extern int selParkingInstitute(MYSQL *mysql, int usr);
 extern void addSchedule(MYSQL *mysql, User usr);
 extern void addVehicle(MYSQL *mysql, User usr);
+extern void addPark(MYSQL *mysql, User usr);
 //extern void visitedParking();
 //extern void usersParking();
 //extern void parkingSector();
