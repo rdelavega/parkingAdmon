@@ -71,7 +71,7 @@ extern void addSchedule(MYSQL *mysql, User usr);
 extern void addVehicle(MYSQL *mysql, User usr);
 extern void addPark(MYSQL *mysql, User usr);
 extern void visitedParking(MYSQL *mysql);
-//extern void usersParking();
+extern void usersParking(MYSQL *mysql);
 //extern void parkingSector();
 //extern void usersRegis();
 //extern void scheduleParking();
