@@ -566,7 +566,7 @@ void typePlaces(MYSQL *mysql, User usr) {
         fgets(sFor[1],100,stdin);
 
         if (valForced(sFor,2) == true) {
-
+                usr.id_user = 5;
                 sprintf(buffer,"SELECT record, date(entryof), tp.typeof FROM p1_park LEFT JOIN p1_vehicle USING(record) LEFT JOIN p1_users USING(id_user) LEFT JOIN p1_parking USING(id_parking) LEFT JOIN p1_type AS tp USING(id_type) WHERE id_user = %d AND date(entryof) >= %s AND date(entryof) <= %s ORDER BY date(entryof);",usr.id_user,sFor[0],sFor[1]);
                 dbQuery(buffer,mysql,&res);
 
