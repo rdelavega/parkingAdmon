@@ -326,7 +326,7 @@ void addSchedule(MYSQL *mysql, User usr) {
         fgets(sFor[1],100,stdin);
         park = selParkingInstitute(mysql,usr.id_institution);
         if (valForced(sFor,3) == true && park != -1 && day != -1) {
-                sprintf(buffer,"INSERT INTO p1_schedule(DAY,startof,endof,id_parking) VALUES(%s,%s,%s,%d)",sFor[0],sFor[1],sFor[2],park);
+                sprintf(buffer,"INSERT INTO p1_schedule(DAY,startof,endof,id_parking) VALUES(%s,%s,%s,%d)",sFor[2],sFor[2],sFor[1],park);
                 printf("%s\n", buffer);
                 if (dbInsert(buffer,mysql) == true) {
                         printf("\n\n\tSe agrego %s correctamente!!!\n",sFor[0]);
