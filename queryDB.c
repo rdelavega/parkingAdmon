@@ -609,7 +609,7 @@ void total(MYSQL *mysql, User usr) {
         printf("\n\n\n");
 
         if (valForced(sFor,2) == true) {
-                usr.id_user = 4;
+
                 sprintf(buffer,"SELECT ty.typeof, sum(p1_rate(timestampdiff(MINUTE,entryof,exitof),rate)) AS total FROM p1_park LEFT JOIN p1_vehicle USING(record) LEFT JOIN p1_users USING(id_user) LEFT JOIN p1_parking AS prki USING(id_parking) LEFT JOIN p1_type AS ty USING(id_type) WHERE exitof IS NOT NULL AND id_user = %d AND date(entryof) >= %s AND date(entryof) <= %s GROUP BY id_type;",usr.id_user,sFor[0],sFor[1]);
                 dbQuery(buffer,mysql,&res);
 
