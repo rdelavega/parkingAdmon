@@ -325,7 +325,7 @@ void visitedParking(MYSQL *mysql) {
         dbQuery(buffer,mysql,&res);
 
         system("clear");
-        printf("\tEstacionamientos mas visitados\n\n\n\n");
+        printf("\n\n\n\tEstacionamientos mas visitados\n\n\n\n");
 
         while ((row = mysql_fetch_row(res))) {
                 printf("\t\t%s\n", row[0]);
@@ -350,7 +350,7 @@ void usersParking(MYSQL *mysql) {
         dbQuery(buffer,mysql,&res);
 
         system("clear");
-        printf("\tPersonas que mas estacionamientos visitan\n\n\n\n");
+        printf("\n\n\n\tPersonas que mas estacionamientos visitan\n\n\n\n");
 
         while ((row = mysql_fetch_row(res))) {
                 printf("\t\t%s\n", row[0]);
@@ -363,4 +363,32 @@ void usersParking(MYSQL *mysql) {
 
         printf("\n\n\n\tPresione Enter para continuar...");
         getchar();
+}
+
+void parkingSector(MYSQL *mysql) {
+        char buffer[1024];
+        MYSQL_RES *res;
+        MYSQL_ROW row;
+        int i = 0;
+
+        system("clear");
+        printf("\n\n\n\tEstacionamientos disponibles en una zona determinada\n\n\n\n");
+
+        int x = selSector();
+
+        sprintf(buffer,"SELECT address FROM p1_parking LEFT JOIN p1_sector USING(id_sector) LEFT JOIN p1_park USING(id_parking) WHERE exitof IS NULL AND id_sector = %d GROUP BY id_parking HAVING count(id_park) < avg(sizeof);",x);
+        dbQuery(buffer,mysql,&res);
+
+        while ((row = mysql_fetch_row(res))) {
+                printf("\t\t%s\n", row[0]);
+                i++;
+        }
+
+        if (i == 0) {
+                printf("\n\tNo hay tipos registrados!!\n");
+        }
+
+        printf("\n\n\n\tPresione Enter para continuar...");
+        getchar();
+
 }
