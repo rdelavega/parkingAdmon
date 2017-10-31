@@ -302,4 +302,5 @@ void addSchedule(MYSQL *mysql, User usr) {
         printf("\tHora de fin (HH:MM):\n");
         fgets(sFor[1],100,stdin);
         printf("%d\n", selParkingInstitute(mysql,usr.id_institution));
+        getchar();
 }
