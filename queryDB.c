@@ -571,7 +571,7 @@ void typePlaces(MYSQL *mysql, User usr) {
                 dbQuery(buffer,mysql,&res);
 
                 while ((row = mysql_fetch_row(res))) {
-                        printf("\t\t%s lugares disponibles\n", row[0]);
+                        printf("\t\t| Matricula: %s | Fecha: %s | Tipo: %s |\n", row[0],row[1],row[2]);
                         i++;
                 }
 
