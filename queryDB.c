@@ -374,7 +374,7 @@ void parkingSector(MYSQL *mysql) {
         system("clear");
         printf("\n\n\n\tEstacionamientos disponibles en una zona determinada\n\n\n\n");
 
-        int x = selSector();
+        int x = selSector(mysql);
 
         sprintf(buffer,"SELECT address FROM p1_parking LEFT JOIN p1_sector USING(id_sector) LEFT JOIN p1_park USING(id_parking) WHERE exitof IS NULL AND id_sector = %d GROUP BY id_parking HAVING count(id_park) < avg(sizeof);",x);
         dbQuery(buffer,mysql,&res);
