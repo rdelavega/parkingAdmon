@@ -252,10 +252,6 @@ void addParking(MYSQL *mysql, User usr) {
 
         system("clear");
         printf("\n\n\n\tIngresa los datos a continuacion solicitados (No hay distincion entre\n\tmayusculas y minusculas):\n\n");
-        printf("\tTarifa:\n");
-        fgets(str,20,stdin);
-        rt = strFloat(str);
-        printf("%f\n", rt);
         printf("\tDireccion:\n");
         fgets(sFor[0],100,stdin);
         printf("\tLongitud:\n");
@@ -265,11 +261,14 @@ void addParking(MYSQL *mysql, User usr) {
         printf("\tCapacidad:\n");
         fgets(str,20,stdin);
         sz = strInt(str);
+        printf("\tTarifa:\n");
+        fgets(str,20,stdin);
+        rt = strFloat(str);
         ins = usr.id_institution;
         ty = selParkingType(mysql);
         sec = selSector(mysql);
         if (valForced(sFor,1) == true && valNotForced(nFor,2) == true && sz > 0 && ty != -1 && sec != -1) {
-                sprintf(buffer,"INSERT INTO p1_parking(address,longitude,latitude,sizeof,id_sector,id_institution,id_type) VALUES(%s,%s,%s,%d,%d,%d,%d)",sFor[0],nFor[0],nFor[1],sz,sec,ins,ty);
+                sprintf(buffer,"INSERT INTO p1_parking(address,longitude,latitude,sizeof,id_sector,id_institution,id_type,rate) VALUES(%s,%s,%s,%d,%d,%d,%d,%f)",sFor[0],nFor[0],nFor[1],sz,sec,ins,ty,rt);
                 printf("%s\n", buffer);
                 if (dbInsert(buffer,mysql) == true) {
                         printf("\n\n\tSe agrego %s correctamente!!!\n",sFor[0]);
