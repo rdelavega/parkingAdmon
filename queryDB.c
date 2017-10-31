@@ -324,6 +324,9 @@ void visitedParking(MYSQL *mysql) {
         sprintf(buffer,"SELECT address AS parked FROM p1_parking LEFT JOIN p1_park USING(id_parking) GROUP BY address HAVING count(id_parking) = (SELECT count(id_parking) AS parked FROM p1_park GROUP BY id_parking ORDER BY parked DESC LIMIT 1) ORDER BY parked DESC;");
         dbQuery(buffer,mysql,&res);
 
+        system("clear");
+        printf("\tEstacionamientos mas visitados\n");
+
         while ((row = mysql_fetch_row(res))) {
                 printf("\t\t%s\n", row[0]);
                 i++;
