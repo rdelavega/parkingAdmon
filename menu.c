@@ -84,7 +84,7 @@ void insertRoute(User usr, int x, MYSQL *mysql) {
                         addUser(mysql,usr);
                         break;
                 case 2:
-                        // addParking();
+                        addParking(mysql,usr);
                         break;
                 case 3:
                         // addSchedule();

@@ -216,6 +216,13 @@ void addSector(MYSQL *mysql) {
         getchar();
 }
 
+/******************************************
+* Solicita al usuario los datos y agraga *
+* una nueva categoria de estacionamiento *
+* @method addType                        *
+* @param  mysql   pointer a DB           *
+******************************************/
+
 void addType(MYSQL *mysql) {
         char sFor[1][100];
         char buffer[1024];
@@ -233,5 +240,10 @@ void addType(MYSQL *mysql) {
                 }
         }
         printf("\tPresione Enter para continuar...");
+        getchar();
+}
+
+void addParking(MYSQL *mysql, User usr) {
+        printf("%d\n", selParkingType(mysql));
         getchar();
 }

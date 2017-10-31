@@ -231,3 +231,39 @@ int selParking(MYSQL *mysql) {
         }
         return opc;
 }
+
+int selParkingType(MYSQL *mysql) {
+        char buffer[1024], str[20];
+        MYSQL_RES *res;
+        MYSQL_ROW row;
+        int opc = 0, i = 0, num[100];
+        bool val = false;
+
+        sprintf(buffer,"SELECT id_type, typeof FROM p1_type");
+        dbQuery(buffer,mysql,&res);
+
+        printf("\n\n\tElige un Tipo:\n");
+        while ((row = mysql_fetch_row(res))) {
+                printf("\t\t%s) %s\n", row[0], row[1]);
+                sprintf(str,"%s\n",row[0]);
+                num[i] = strInt(str);
+                i++;
+        }
+
+        if (i == 0) {
+                printf("\n\tNo hay tipos registrados!!\n");
+                opc = -1;
+        } else {
+                fgets(str,20,stdin);
+                opc = strInt(str);
+                for (int j = 0; j < i; j++) {
+                        if (opc == num[j]) {
+                                val = true;
+                        }
+                }
+                if (val != true) {
+                        opc = -1;
+                }
+        }
+        return opc;
+}

@@ -63,3 +63,4 @@ extern int selSector(MYSQL *mysql);
 extern int selParking(MYSQL *mysql);
 extern void addSector(MYSQL *mysql);
 extern void addType(MYSQL *mysql);
+extern int selParkingType(MYSQL *mysql);
