@@ -400,7 +400,7 @@ void usersRegis(MYSQL *mysql) {
         system("clear");
         printf("\n\n\n\tEstacionamientos disponibles en una zona determinada\n\n\n\n");
 
-        sprintf(buffer,"SELECT concat(l_name,' ',l_name2,', ',name) AS nombre FROM p1_users ORDER BY l_name;");
+        sprintf(buffer,"SELECT concat(l_name,', ',name) AS nombre FROM p1_users ORDER BY l_name;");
         dbQuery(buffer,mysql,&res);
 
         while ((row = mysql_fetch_row(res))) {
