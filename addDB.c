@@ -255,7 +255,7 @@ void addParking(MYSQL *mysql, User usr) {
         printf("\tTarifa:\n");
         fgets(str,20,stdin);
         rt = strFloat(str);
-        printf("%d\n", tr);
+        printf("%f\n", tr);
         printf("\tDireccion:\n");
         fgets(sFor[0],100,stdin);
         printf("\tLongitud:\n");
