@@ -244,6 +244,5 @@ void addType(MYSQL *mysql) {
 }
 
 void addParking(MYSQL *mysql, User usr) {
-        printf("%d\n", selParkingType(mysql));
-        getchar();
+
 }

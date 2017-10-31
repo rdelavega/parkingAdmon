@@ -111,7 +111,81 @@ void insertRoute(User usr, int x, MYSQL *mysql) {
 ***************************************/
 
 void queryRoute(User usr, int x, MYSQL *mysql) {
-
+        char str[20];
+        int opc = 0;
+        if ((strcmp(usr.type_of,"Superuser") == 0) || (strcmp(usr.type_of,"Administrador") == 0)) {
+                switch (x) {
+                case 1:
+                        //visitedParking();
+                        break;
+                case 2:
+                        //usersParking();
+                        break;
+                case 3:
+                        // parkingSector();
+                        break;
+                case 4:
+                        // usersRegis();
+                        break;
+                case 5:
+                        // scheduleParking();
+                        break;
+                case 6:
+                        //sectorUsers();
+                        break;
+                case 7:
+                        //usersParking();
+                        break;
+                case 8:
+                        //usersSector();
+                        break;
+                case 9:
+                        //space();
+                        break;
+                case 0:
+                        //previous();
+                        break;
+                }
+        } else if (strcmp(usr.type_of,"Cliente") == 0) {
+                switch (x) {
+                case 1:
+                        //visitedParking();
+                        break;
+                case 2:
+                        //usersParking();
+                        break;
+                case 3:
+                        // parkingSector();
+                        break;
+                case 4:
+                        // usersRegis();
+                        break;
+                case 5:
+                        // scheduleParking();
+                        break;
+                case 6:
+                        //colonyUsers();
+                        break;
+                case 7:
+                        //usersParking();
+                        break;
+                case 8:
+                        //usersSector();
+                        break;
+                case 9:
+                        //space();
+                        break;
+                case 10:
+                        // typePlaces();
+                        break;
+                case 11:
+                        // total();
+                        break;
+                case 0:
+                        // previous();
+                        break;
+                }
+        }
 }
 
 /*******************************************
@@ -151,15 +225,28 @@ void optionInsert(char *type_of) {
 void optionQuery(char *type_of) {
         system("clear");
         printf("\n\n\tElige una opcion:\n\n");
-        printf("\t\t 1) Estacionamientos mas visitados\n");
-        printf("\t\t 2) Personas que mas estacionamientos visitan\n");
-        printf("\t\t 3) Estacionamientos disponibles en una zona determinada\n");
-        printf("\t\t 4) Usuarios registrados en el sistema\n");
-        printf("\t\t 5) Horarios de un estacionamiento en particular\n");
-        printf("\t\t 6) Zonas mas concurridas\n");
-        printf("\t\t 7) Horarios mas concurridos\n");
-        printf("\t\t 8) Lugares disponibles en un estacionamiento particular\n");
-        printf("\t\t 9) Tipos de lugares usados\n");
-        printf("\t\t10) Monto total\n");
-        printf("\t\t0) Menu anterior\n");
+        if ((strcmp(type_of,"Superuser") == 0) || (strcmp(type_of,"Administrador") == 0)) {
+                printf("\t\t 1) Estacionamientos mas visitados\n");
+                printf("\t\t 2) Personas que mas estacionamientos visitan\n");
+                printf("\t\t 3) Estacionamientos disponibles en una zona determinada\n");
+                printf("\t\t 4) Usuarios registrados en el sistema\n");
+                printf("\t\t 5) Horarios de un estacionamiento en particular\n");
+                printf("\t\t 6) Zonas mas concurridas\n");
+                printf("\t\t 7) Horarios mas concurridos por estacionamiento\n");
+                printf("\t\t 8) Horarios mas concurridos por zona\n");
+                printf("\t\t 9) Lugares disponibles en un estacionamiento particular\n");
+        } else if (strcmp(type_of,"Cliente") == 0) {
+                printf("\t\t 1) Estacionamientos mas visitados\n");
+                printf("\t\t 2) Personas que mas estacionamientos visitan\n");
+                printf("\t\t 3) Estacionamientos disponibles en una zona determinada\n");
+                printf("\t\t 4) Usuarios registrados en el sistema\n");
+                printf("\t\t 5) Horarios de un estacionamiento en particular\n");
+                printf("\t\t 6) Zonas mas concurridas\n");
+                printf("\t\t 7) Horarios mas concurridos por estacionamiento\n");
+                printf("\t\t 8) Horarios mas concurridos por zona\n");
+                printf("\t\t 9) Lugares disponibles en un estacionamiento particular\n");
+                printf("\t\t10) Tipos de lugares usados\n");
+                printf("\t\t11) Monto total\n");
+        }
+        printf("\t\t 0) Menu anterior\n");
 }
