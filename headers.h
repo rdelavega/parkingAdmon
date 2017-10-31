@@ -65,6 +65,7 @@ extern void addSector(MYSQL *mysql);
 extern void addType(MYSQL *mysql);
 extern int selParkingType(MYSQL *mysql);
 extern void addParking(MYSQL *mysql, User usr);
+extern float strFloat (char *str);
 //extern void visitedParking();
 //extern void usersParking();
 //extern void parkingSector();

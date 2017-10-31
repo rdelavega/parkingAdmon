@@ -60,6 +60,23 @@ int strInt (char *str) {
         return x;
 }
 
+/***********************************
+* Convierte un string a flotante o*
+* devuelve -1                     *
+* @method strFloat                *
+* @param  str    pointer a String *
+* @return        Float            *
+***********************************/
+
+float strFloat (char *str) {
+        char *ptr = "";
+        float x = strtof(str, &ptr, 10);
+        if (strcmp(ptr,"\n\0") != 0) {
+                x = -1;
+        }
+        return x;
+}
+
 /********************************************
 * Valida datos obligatorios, si es posible *
 * regresa true, de lo contrario false      *

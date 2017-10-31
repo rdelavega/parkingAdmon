@@ -29,6 +29,8 @@ void logIn(char *user_name, char *password, MYSQL *mysql) {
                 setStruct(cont,&usr);
 
                 printf("\n\n\n\tBienvenido: %s %s (%s)\n\n",usr.name,usr.l_name,usr.type_of);
+                printf("\tPresione Enter para continuar...");
+                getchar();
 
                 setMenu(usr,mysql);
         }
