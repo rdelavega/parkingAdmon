@@ -170,7 +170,7 @@ void queryRoute(User usr, int x, MYSQL *mysql) {
                         hourParking(mysql);
                         break;
                 case 8:
-                        //usersSector();
+                        usersSector(mysql);
                         break;
                 case 9:
                         //space();
