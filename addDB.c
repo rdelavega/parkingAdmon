@@ -246,6 +246,7 @@ void addType(MYSQL *mysql) {
 /******************************************
 * Solicita al usuario los datos y agrega *
 * a la base de datos.                    *
+* @method   addParking                   *
 * @param mysql   pointer a DB            *
 * @parma usr     user's struct           *
 ******************************************/
@@ -290,6 +291,7 @@ void addParking(MYSQL *mysql, User usr) {
 /******************************************
 * Solicita al usuario los datos y agrega *
 * a la base de datos.                    *
+* @method   addSchedule                  *
 * @param mysql   pointer a DB            *
 * @parma usr     user's struct           *
 ******************************************/
@@ -348,6 +350,17 @@ void addSchedule(MYSQL *mysql, User usr) {
         getchar();
 }
 
+/***********************************************
+* Solicita al usuario tipo Cliente  los datos *
+* del vehiculo a registar, y registra un      *
+* nuevo vehiculo en la base de datos, es      *
+* indispensable registar los automoviles para *
+* usar el sistema.                            *
+* @method    addVehicle                       *
+* @ñaram     mysql   pointer a DB             *
+* @param     usr     User's struct            *
+***********************************************/
+
 void addVehicle(MYSQL *mysql, User usr) {
         char sFor[4][100];
         char str[20], buffer[1024];
@@ -375,6 +388,16 @@ void addVehicle(MYSQL *mysql, User usr) {
         printf("\tPresione Enter para continuar...");
         getchar();
 }
+
+/********************************************
+* Regustra cuando un usuario se estaciona, *
+* despues de recibir el id de vehiculo y   *
+* estacionamiento, se registra con la      *
+* fecha y hora actuales.                   *
+* @method  addPark                         *
+* @param   mysql   pointer a DB            *
+* @param   usr     User's struct           *
+********************************************/
 
 void addPark(MYSQL *mysql, User usr) {
         char sFor[1][100];

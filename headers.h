@@ -1,3 +1,13 @@
+/****************************************************
+ * parkingAdmon                                     *
+ * @brief Sistema de administracion de la base de   *
+ *        datos de un sistema de administracion de  *
+ *        estacionamientos y parquimetros.          *
+ * @author Ricardo de la Vega Barrón                *
+ * @author Angel Martin Rodriguez Mendoza           *
+ ****************************************************/
+
+
 ///////////////
 // Libraries //
 ///////////////

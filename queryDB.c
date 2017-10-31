@@ -273,6 +273,7 @@ int selParkingInstitute(MYSQL *mysql, int usr) {
 /**************************************************
 * Muestar los distintos tipos de estacionamiento *
 * que hay registrados y regresa la decision.     *
+* @method  selParkingType                        *
 * @param   mysql   pointer a DB                  *
 * @return  opc     -1 Opcion invalida            *
 **************************************************/
@@ -313,6 +314,13 @@ int selParkingType(MYSQL *mysql) {
         return opc;
 }
 
+/************************************************
+* Muestra al usuario los estacionamientos mas  *
+* visitados.                                   *
+* @method  visitedParking                      *
+* @param   mysql   pointer a DB                *
+************************************************/
+
 void visitedParking(MYSQL *mysql) {
         char buffer[1024];
         MYSQL_RES *res;
@@ -338,6 +346,13 @@ void visitedParking(MYSQL *mysql) {
         getchar();
 }
 
+/**********************************************************
+* Muestra a las personas que visitan mas estacionamientos *
+* diferentes.                                             *
+* @method   usersParking                                  *
+* @param    mysql   pointer a DB                          *
+**********************************************************/
+
 void usersParking(MYSQL *mysql) {
         char buffer[1024];
         MYSQL_RES *res;
@@ -362,6 +377,13 @@ void usersParking(MYSQL *mysql) {
         printf("\n\n\n\tPresione Enter para continuar...");
         getchar();
 }
+
+/***********************************************************
+* Tras obtener el id de la zona deseada, muestra el query *
+* de cuantos estacionamientos estan disponibles.          *
+* @method  parkingSector                                  *
+* @param   mysql   pointer a DB                           *
+***********************************************************/
 
 void parkingSector(MYSQL *mysql) {
         char buffer[1024];
@@ -391,6 +413,13 @@ void parkingSector(MYSQL *mysql) {
 
 }
 
+/*******************************************
+* Muestra una lista de todos los Usuarios *
+* actualmente registrados.                *
+* @method  usersRegis                     *
+* @param   mysql   pointer a DB           *
+*******************************************/
+
 void usersRegis(MYSQL *mysql) {
         char buffer[1024];
         MYSQL_RES *res;
@@ -415,6 +444,14 @@ void usersRegis(MYSQL *mysql) {
         printf("\n\n\n\tPresione Enter para continuar...");
         getchar();
 }
+
+/****************************************
+* Despues de que el usuario seleccione *
+* un estacionamiento, se despliega una *
+* lista de sus horarios.               *
+* @method  scheduleParking             *
+* @param   mysql   pointer a DB        *
+****************************************/
 
 void scheduleParking(MYSQL *mysql) {
         char buffer[1024];
@@ -443,6 +480,12 @@ void scheduleParking(MYSQL *mysql) {
         getchar();
 }
 
+/**************************************
+* Muestra una lista de las zonas mas *
+* concurridas.                       *
+* @param   mysql                     *
+**************************************/
+
 void sectorUsers(MYSQL *mysql) {
         char buffer[1024];
         MYSQL_RES *res;
@@ -467,6 +510,14 @@ void sectorUsers(MYSQL *mysql) {
         printf("\n\n\n\tPresione Enter para continuar...");
         getchar();
 }
+
+/************************************************
+* Despues de obtener el id del estacionamiento *
+* deseado, muestra un horario de los Horarios  *
+* mas concurridos.                             *
+* @method  hourParking                         *
+* @param   mysql   pointer a DB                *
+************************************************/
 
 void hourParking(MYSQL *mysql) {
         char buffer[1024];
@@ -495,6 +546,14 @@ void hourParking(MYSQL *mysql) {
         getchar();
 }
 
+/************************************************
+* Despues de recibir el id de la zona deseada, *
+* muestra una lista del o los horarios mas     *
+* concurridos.                                 *
+* @mathod  usersSector                         *
+* @param   mysql   pointer a DB                *
+************************************************/
+
 void usersSector(MYSQL *mysql) {
         char buffer[1024];
         MYSQL_RES *res;
@@ -522,6 +581,14 @@ void usersSector(MYSQL *mysql) {
         getchar();
 }
 
+/**************************************************
+* Despues de recinir el id de el estacionamiento *
+* deseado, se muestra el numero de lugares       *
+* disponibñes.                                   *
+* @method  space                                 *
+* @param   mysql   pointer a DB                  *
+**************************************************/
+
 void space(MYSQL *mysql) {
         char buffer[1024];
         MYSQL_RES *res;
@@ -548,6 +615,15 @@ void space(MYSQL *mysql) {
         printf("\n\n\n\tPresione Enter para continuar...");
         getchar();
 }
+
+/*******************************************************
+* Solicita al usuario dos fechas, para posteriormente *
+* desplegar una lista de los lugares en los que ha    *
+* estado y de que tipo era.                           *
+* @method  typePlaces                                 *
+* @param   mysql   pointer a DB                       *
+* @param   usr     user's struct                      *
+*******************************************************/
 
 void typePlaces(MYSQL *mysql, User usr) {
         char buffer[1024];
@@ -589,6 +665,13 @@ void typePlaces(MYSQL *mysql, User usr) {
         getchar();
 }
 
+/*******************************************
+* Muestra al usuario el monto total entre *
+* dos fechas que el mismo proporciona.    *
+* @mathod  total                          *
+* @param   mysql   pointer a DB           *
+* @param   usr     user's struct          *
+*******************************************/
 
 void total(MYSQL *mysql, User usr) {
         char buffer[1024];
