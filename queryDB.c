@@ -339,3 +339,28 @@ void visitedParking(MYSQL *mysql) {
         printf("\n\n\n\tPresione Enter para continuar...");
         getchar();
 }
+
+void usersParking(MYSQL *mysql) {
+        char buffer[1024];
+        MYSQL_RES *res;
+        MYSQL_ROW row;
+        int i = 0;
+
+        sprintf(buffer,"SELECT concat(l_name,' ',l_name2,', ',name) AS nombre FROM p1_park LEFT JOIN p1_vehicle USING(record) LEFT JOIN p1_users USING(id_user) GROUP BY id_user HAVING count(DISTINCT id_parking) = (SELECT count(DISTINCT id_parking) FROM p1_park LEFT JOIN p1_vehicle USING(record) LEFT JOIN p1_users USING(id_user) GROUP BY id_user ORDER BY count(DISTINCT id_parking) DESC LIMIT 1)");
+        dbQuery(buffer,mysql,&res);
+
+        system("clear");
+        printf("\tPersonas que mas estacionamientos visitan\n\n\n\n");
+
+        while ((row = mysql_fetch_row(res))) {
+                printf("\t\t%s\n", row[0]);
+                i++;
+        }
+
+        if (i == 0) {
+                printf("\n\tNo hay tipos registrados!!\n");
+        }
+
+        printf("\n\n\n\tPresione Enter para continuar...");
+        getchar();
+}
