@@ -70,7 +70,7 @@ int strInt (char *str) {
 
 float strFloat (char *str) {
         char *ptr = "";
-        float x = strtof(str, &ptr, 10);
+        float x = strtof(str, &ptr);
         if (strcmp(ptr,"\n\0") != 0) {
                 x = -1;
         }
