@@ -173,7 +173,7 @@ void queryRoute(User usr, int x, MYSQL *mysql) {
                         space(mysql);
                         break;
                 case 10:
-                        // typePlaces();
+                        typePlaces(mysql,usr);
                         break;
                 case 11:
                         // total();
