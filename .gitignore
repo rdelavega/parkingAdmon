@@ -1,0 +1,4 @@
+*.o
+password
+CMakeLists.txt
+cmake-build-debug
